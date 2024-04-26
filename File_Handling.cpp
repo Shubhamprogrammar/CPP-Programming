@@ -33,20 +33,14 @@ using namespace std;
 
 //// Reading data from the file
 int main() {
-    fstream FileName;                   
-    FileName.open("FileName.txt", ios::in);         
-    if (!FileName) {                        
-        cout<<"File doesn’t exist.";          
-    }
-    else {
-        char x;                     
-        while (1) {         
-            FileName>>x;              
-            if(FileName.eof())          
-                break;              
-            cout<<x;                  
-        }
-    }
+    string myText;
+
+    ifstream FileName; 
+    FileName.open("filename.txt",iOS::in);
+
+    while (getline (FileName, myText)) {
+          cout << myText;
+     }
     FileName.close();                   
     return 0;
 }
