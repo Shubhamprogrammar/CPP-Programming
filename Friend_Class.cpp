@@ -1,103 +1,42 @@
+// C++ Program to demonstrate the functioning of a friend class
 #include <iostream>
 using namespace std;
 
-class Employee {
-    private :
-    int id;
-    string name;
-    string department;
-    string role;
-    
-    
-    public:
-    void setId(int id);
-    void setName(string name);
-    void setDepartment(string department);
-    void setRole(string role);   
-    int getId();
-    string getName();
-    string getDepartment();
-    string getRole();
-    
-    friend void display(const Employee& emp);
+class ABC {
+private:
+	int private_variable;
+
+protected:
+	int protected_variable;
+
+public:
+	ABC()
+	{
+		private_variable = 10;
+		protected_variable = 99;
+	}
+
+	// friend class declaration
+	friend class F;
 };
 
-void Employee::setId(int id){
-    this->id=id;
-}
-void Employee::setName(string name){
-    this->name=name;
-}
-void Employee::setDepartment(string department){
-    this->department=department;
-}
-void Employee::setRole(string role){
-    this->role=role;
-}
+class F {
+public:
+	void display(ABC& t)
+	{
+		cout << "The value of Private Variable = "
+			<< t.private_variable << endl;
+		cout << "The value of Protected Variable = "
+			<< t.protected_variable;
+	}
+};
 
-
-int Employee::getId(){
-    return this->id;
-}
-string Employee::getName(){
-    return this->name;
-}
-string Employee::getDepartment(){
-    return this->department;
-}
-string Employee::getRole(){
-    return this->role;
-}
-
-
-void display(const Employee& emp) { // Define the display function as a friend
-    cout << " Employee Id :- " << emp.id << endl;
-    cout << " Employee Name :- " << emp.name << endl;
-    cout << " Employee Department :- " << emp.department << endl;
-    cout << " Employee Role :- " << emp.role << endl;
-}
-
+// Driver code
 int main()
 {
-    Employee e1;
-    e1.setId(1);
-    e1.setName("Shubham Maurya");
-    e1.setDepartment("Developer");
-    e1.setRole("Python Developer");
-    
-    Employee e2;
-    e2.setId(2);
-    e2.setName("Krsna");
-    e2.setDepartment("Designer");
-    e2.setRole("Frontend");
-    
-    Employee e3;
-    e3.setId(3);
-    e3.setName("Ram");
-    e3.setDepartment("Developer");
-    e3.setRole("UI/UX");
-    
-    cout<<" Employee Id :- "<<e1.getId()<<endl;
-    cout<<" Employee Name :- "<<e1.getName()<<endl;
-    cout<<" Employee Department :- "<<e1.getDepartment()<<endl;
-    cout<<" Employee Role :- "<<e1.getRole()<<endl;
-    cout<<"**********"<<endl;
-    cout<<" Employee Id :- "<<e2.getId()<<endl;
-    cout<<" Employee Name :- "<<e2.getName()<<endl;
-    cout<<" Employee Department :- "<<e2.getDepartment()<<endl;
-    cout<<" Employee Role :- "<<e2.getRole()<<endl;
-    cout<<"**********"<<endl;
-    cout<<" Employee Id :- "<<e3.getId()<<endl;
-    cout<<" Employee Name :- "<<e3.getName()<<endl;
-    cout<<" Employee Department :- "<<e3.getDepartment()<<endl;
-    cout<<" Employee Role :- "<<e3.getRole()<<endl;
-    
-    cout<<"**********"<<endl;
-    display(e1);
-    cout<<"**********"<<endl;
-    display(e2);
-    cout<<"**********"<<endl;
-    display(e3);
-    
-    return 0;
+	ABC a;
+	F fri;
+	fri.display(a);
+	return 0;
 }
+
